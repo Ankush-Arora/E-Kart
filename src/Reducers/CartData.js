@@ -15,7 +15,7 @@ const changeInCart=(state=initialState,action)=>{
             }
         return {...state,cartData:[...state.cartData,action.payload]}
         }
-        case "INCRQUANTITY" : 
+        case "INCRQUANTITY": 
          {
             const itemIdx=state.cartData.findIndex((item)=>item.id === action.payload.id);
 
@@ -25,7 +25,7 @@ const changeInCart=(state=initialState,action)=>{
             }
          } 
          return state;
-         case "DECRQUANTITY" : 
+         case "DECRQUANTITY": 
          {
             const itemIdx=state.cartData.findIndex((item)=>item.id === action.payload.id);
 
@@ -41,7 +41,26 @@ const changeInCart=(state=initialState,action)=>{
          } 
          return state
 
-        case "EMPTYCART": return {cartData:[]}
+        case "EMPTYCART": return {cartData:[]};
+        case "DELETEITEM":  {
+            // let newData =state.cartData.filter((item)=>item.id !== action.payload.id)
+            //   state.cartData=newData
+            const itemIdx=state.cartData.findIndex((item)=>item.id === action.payload.id);
+            if(itemIdx>=0)
+            {
+              let newData=[]
+              newData=state.cartData.filter((item)=>item.id !== action.payload.id)
+                // var idx=0;
+                // for(var i=0;i<state.cartData.length;i++)
+                // {
+                //     if(i===itemIdx) continue;
+                //     newData[idx++]=state.cartData[i];
+                // }
+                // state.cartData=newData;
+                return {...state,cartData:newData};
+            }
+              return state;
+        }
         default: return state;
     }
 }

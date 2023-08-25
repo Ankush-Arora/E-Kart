@@ -4,11 +4,8 @@ import { Button } from 'react-bootstrap'
 import order from '../img/shop.png'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { EmptyCart,IncrQuantity,DecrQuantity } from '../Actions'
+import { EmptyCart,IncrQuantity,DecrQuantity,DeleteItem } from '../Actions'
 const Cart = () => {
-
-
-
   const getDataFromStore=useSelector((state)=>state.changeInCart.cartData)
   const dispatch=useDispatch();
   const [update,setUpdate]=useState(true)
@@ -24,15 +21,23 @@ const Cart = () => {
   function increase(item)
   {
     // console.warn('Increased method called')
-    setCopyCart(getDataFromStore)
+     setCopyCart(getDataFromStore)
     dispatch(IncrQuantity(item))
+    setUpdate(!update)
+  }
+
+  function deleteItem(item)
+  {
+    setCopyCart(getDataFromStore)
+    alert('Item Deleted '+item.brand);
+    dispatch(DeleteItem(item))
     setUpdate(!update)
   }
 
   function decrease(item)
   {
     // console.warn('Increased method called')
-    setCopyCart(getDataFromStore)
+      setCopyCart(getDataFromStore)
     dispatch(DecrQuantity(item))
     setUpdate(!update)
   }
@@ -71,7 +76,7 @@ const Cart = () => {
           <table className='cart-table' >
             <thead>
               <tr ><td>ITEMS</td><td>BRAND</td>
-                <td></td><td>QUANTITY</td><td></td><td>PRICE</td></tr>
+                <td></td><td>QUANTITY</td><td></td><td>PRICE</td><td>REMOVE</td></tr>
             </thead>
             <tbody>
               {
@@ -81,6 +86,7 @@ const Cart = () => {
                     <td>{item.brand}</td>
                     <td><Button onClick={()=>increase(item)} >+</Button></td><td>{item.quantity} </td>
                     <td><Button onClick={()=>decrease(item)} >-</Button></td><td>₹{item.price * item.quantity}</td><td></td>
+                    <td><Button onClick={()=>deleteItem(item)}>Delete</Button></td>
                   </tr>
                 })
               }
@@ -107,7 +113,7 @@ const Cart = () => {
                 }
               </tr>
             </tbody>
-          </table> : <img className='image-cart' src={order} alt='image not found' ></img>
+          </table> : <img className='image-cart' src={order} alt='image not found'   ></img>
       }
       </div> }
     </div>

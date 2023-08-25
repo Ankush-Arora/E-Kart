@@ -115,7 +115,7 @@
 
     .image-cart{
         display: flex;
-        height: 200px;
+        height: 400px;
         align-items: center;
         border-radius: 25px;
         margin: 50px;
@@ -139,3 +139,4 @@
         border-radius: 5px;
         width: 40%;
     }
+ 
