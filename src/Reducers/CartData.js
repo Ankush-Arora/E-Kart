@@ -48,8 +48,8 @@ const changeInCart=(state=initialState,action)=>{
             const itemIdx=state.cartData.findIndex((item)=>item.id === action.payload.id);
             if(itemIdx>=0)
             {
-              let newData=[]
-              newData=state.cartData.filter((item)=>item.id !== action.payload.id)
+            //   let newData=[]
+             let newData=state.cartData.filter((item)=>item.id !== action.payload.id)
                 // var idx=0;
                 // for(var i=0;i<state.cartData.length;i++)
                 // {
