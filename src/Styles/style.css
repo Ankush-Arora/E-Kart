@@ -5,6 +5,12 @@
     justify-content: center;
 
 }
+
+.delete-btn:hover{
+        cursor: pointer;
+        background-color: red;
+        border-radius: 5px;
+}
 .whole-menu
 {
     background-color: rgb(218, 237, 253);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../Styles/style.css'
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from 'react-bootstrap'
 import order from '../img/shop.png'
 import { Link } from 'react-router-dom'
@@ -29,7 +30,7 @@ const Cart = () => {
   function deleteItem(item)
   {
     setCopyCart(getDataFromStore)
-    alert('Item Deleted '+item.brand);
+    alert('Deleted Item '+item.brand);
     dispatch(DeleteItem(item))
     setUpdate(!update)
   }
@@ -76,7 +77,7 @@ const Cart = () => {
           <table className='cart-table' >
             <thead>
               <tr ><td>ITEMS</td><td>BRAND</td>
-                <td></td><td>QUANTITY</td><td></td><td>PRICE</td><td>REMOVE</td></tr>
+                <td></td><td>QUANTITY</td><td></td><td>PRICE</td><td></td><td><DeleteIcon/></td></tr>
             </thead>
             <tbody>
               {
@@ -86,7 +87,7 @@ const Cart = () => {
                     <td>{item.brand}</td>
                     <td><Button onClick={()=>increase(item)} >+</Button></td><td>{item.quantity} </td>
                     <td><Button onClick={()=>decrease(item)} >-</Button></td><td>₹{item.price * item.quantity}</td><td></td>
-                    <td><Button onClick={()=>deleteItem(item)}>Delete</Button></td>
+                    <td><div className='delete-btn' onClick={()=>deleteItem(item)}><DeleteIcon/></div></td>
                   </tr>
                 })
               }
